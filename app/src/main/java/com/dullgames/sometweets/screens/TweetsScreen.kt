@@ -17,20 +17,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.dullgames.sometweets.models.TweetListItem
 import com.dullgames.sometweets.viewmodels.TweetViewModel
 
 @Composable
 fun TweetsScreen() {
-    val tweetViewModel: TweetViewModel = viewModel()
+    val tweetViewModel: TweetViewModel = hiltViewModel()
     val tweet: State<List<TweetListItem>> = tweetViewModel.tweets.collectAsState()
     LazyColumn {
         items(tweet.value) {
             TweetItemScreen(tweet = it.text)
         }
     }
-
 }
 
 

@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.dullgames.sometweets"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.dullgames.sometweets"
@@ -83,10 +83,11 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
-//    implementation("androidx.navigation:navigation-compose:2.7.1")
-//    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("androidx.navigation:navigation-compose:2.7.1")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     //hilt
     implementation("com.google.dagger:hilt-android:2.47")
     kapt("com.google.dagger:hilt-android-compiler:2.47")
+
 }
