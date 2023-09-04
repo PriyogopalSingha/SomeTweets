@@ -5,12 +5,14 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,16 +36,23 @@ import com.dullgames.sometweets.viewmodels.TweetsCategoryViewModel
 fun CategoryScreen(onClick : (category: String) -> Unit) {
     val categoryViewModel: TweetsCategoryViewModel = hiltViewModel()
     val categories: State<List<String>> = categoryViewModel.categories.collectAsState()
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
-        contentPadding = PaddingValues(8.dp),
-        verticalArrangement = Arrangement.SpaceAround
+    if(categories.value.isEmpty()){
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+            CircularProgressIndicator()
+        }
+    }else{
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            contentPadding = PaddingValues(8.dp),
+            verticalArrangement = Arrangement.SpaceAround
         ){
             items(categories.value.distinct()){
                 CategoryItem(category = it, onClick)
             }
 
+        }
     }
+
 }
 
 @Composable
@@ -59,7 +68,7 @@ fun CategoryItem(category: String, onClick : (category: String) -> Unit ) {
             .paint(
                 painter = painterResource(id = R.drawable.waves),
                 contentScale = ContentScale.Crop
-                )
+            )
             .border(width = 1.dp, Color(0xffeeeeee)),
         contentAlignment = Alignment.BottomCenter
     ) {

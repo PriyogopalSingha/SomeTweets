@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                                 Text(text = "Some Tweets", color = Color.White)
                             },
                             colors = TopAppBarDefaults.smallTopAppBarColors(
-                                containerColor = Color.Yellow,
+                                containerColor = Color.Black,
                                 titleContentColor = Color.White
                             )
                         )
